@@ -1,0 +1,17 @@
+# macOS system files
+.DS_Store
+
+# Local environment overrides
+.env
+.env.*
+
+# Model artifacts and large downloads
+models/
+*.gguf
+*.safetensors
+*.bin
+*.pt
+
+# Logs and temporary files
+*.log
+*.tmp

@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  qwen3-embedding:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    container_name: qwen3-embedding-server
+    platform: linux/amd64
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./models:/models
+    command: >
+      llama-server
+      -m /models/Qwen3-Embedding-0.6B-q4_k_m.gguf
+      --embedding
+      --pooling last
+      -ub 8192
+      --verbose-prompt
+      --host 0.0.0.0
+      --port 8080
+      -c 4096
+    # CPU-only configuration
+    # environment:
+    #   - CUDA_VISIBLE_DEVICES=0
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+# To use this docker-compose:
+# 1. Create a models directory: mkdir models
+# 2. Download the model:
+#    wget -O models/Qwen3-Embedding-0.6B-q4_k_m.gguf https://huggingface.co/Mungert/Qwen3-Embedding-0.6B-GGUF/resolve/main/Qwen3-Embedding-0.6B-q4_k_m.gguf
+# 3. Run: docker-compose -f qwen3-embedding-docker-compose.yml up -d
