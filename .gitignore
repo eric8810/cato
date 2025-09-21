@@ -5,6 +5,15 @@
 .env
 .env.*
 
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.pnpm-workspace-state-v1.json
+
 # Model artifacts and large downloads
 models/
 *.gguf
@@ -15,3 +24,14 @@ models/
 # Logs and temporary files
 *.log
 *.tmp
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo

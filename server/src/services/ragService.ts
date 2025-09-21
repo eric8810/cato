@@ -1,4 +1,5 @@
-import { VectorStoreIndex } from 'llamaindex';
+import { VectorStoreIndex, Settings } from 'llamaindex';
+import { OpenAIEmbedding } from '@llamaindex/openai';
 import { config } from '../config';
 import { ChatMessage } from '../models/Document';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,6 +13,13 @@ class RAGService {
 
   async initialize() {
     try {
+      // Configure embedding model to use local llama.cpp server
+      Settings.embedModel = new OpenAIEmbedding({
+        apiKey: 'sk-fake', // llama.cpp doesn't need a real API key
+        baseURL: config.models.embedding,
+        model: 'text-embedding-3-small' // This can be any name for llama.cpp
+      });
+
       // For now, create a simple in-memory document store
       // We'll enhance this later with proper vector storage
       this.index = await VectorStoreIndex.fromDocuments([]);
