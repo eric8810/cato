@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  qwen3-1.7b:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    container_name: qwen3-1.7b-server
+    platform: linux/amd64
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./models:/models
+    # Add `-ngl 99` after `-c 32768` when running with GPU layers enabled.
+    command: >
+      -m /models/Qwen3-1.7B-Q4_K_M.gguf
+      --host 0.0.0.0
+      --port 8080
+      -c 32768
+      --temp 0.7
+      --top-k 40
+      --top-p 0.9
+      --verbose-prompt
+    # CPU-only configuration
+    # environment:
+    #   - CUDA_VISIBLE_DEVICES=0
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# To use this docker-compose:
+# 1. Create a models directory: mkdir models
+# 2. Download the model:
+#    huggingface-cli download Qwen/Qwen3-1.7B-GGUF Qwen3-1.7B-Q4_K_M.gguf --local-dir models --local-dir-use-symlinks False
+#
+#    Alternative download methods:
+#    wget -O models/Qwen3-1.7B-Q4_K_M.gguf https://huggingface.co/Qwen/Qwen3-1.7B-GGUF/resolve/main/Qwen3-1.7B-Q4_K_M.gguf
+# 3. Run: docker-compose -f qwen3-1.7b-docker-compose.yml up -d
+#
+# API Usage:
+# - Chat API: http://localhost:8082/v1/chat/completions
+# - Completions API: http://localhost:8082/v1/completions
+# - Health check: http://localhost:8082/health
+#
+# Model Info:
+# - Size: Qwen3 1.7B parameters (Q4_K_M quantization)
+# - Context window: 32K tokens
+# - Latest Qwen3 series model

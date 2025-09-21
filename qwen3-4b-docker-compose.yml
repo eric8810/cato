@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   qwen3-4b:
     image: ghcr.io/ggml-org/llama.cpp:server
@@ -9,7 +11,6 @@ services:
       - ./models:/models
     # Add `-ngl 99` after `-c 32768` when running with GPU layers enabled.
     command: >
-      llama-server
       -m /models/Qwen3-4B-Q4_K_M.gguf
       --host 0.0.0.0
       --port 8080

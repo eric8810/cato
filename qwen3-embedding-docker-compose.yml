@@ -10,7 +10,6 @@ services:
     volumes:
       - ./models:/models
     command: >
-      llama-server
       -m /models/Qwen3-Embedding-0.6B-q4_k_m.gguf
       --embedding
       --pooling last
