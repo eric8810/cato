@@ -99,3 +99,4 @@ Both services:
 - Model files (*.gguf) are gitignored and must be downloaded separately
 - Services run in CPU-only mode by default; GPU sections are commented out
 - The embedding model filename differs between README and docker-compose (Q8_0 vs q4_k_m)
+- 这个项目使用pnpm
