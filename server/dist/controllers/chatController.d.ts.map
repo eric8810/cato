@@ -1,1 +1,0 @@
-{"version":3,"file":"chatController.d.ts","sourceRoot":"","sources":["../../src/controllers/chatController.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,KAAK,CAAC;AAG9B,cAAM,cAAc;IACZ,WAAW,CAAC,GAAG,EAAE,OAAO;IAuBxB,UAAU,CAAC,GAAG,EAAE,OAAO;IAevB,YAAY,CAAC,GAAG,EAAE,OAAO;CAchC;AAED,eAAO,MAAM,cAAc,gBAAuB,CAAC"}

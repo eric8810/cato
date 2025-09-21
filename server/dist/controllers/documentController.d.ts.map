@@ -1,1 +1,0 @@
-{"version":3,"file":"documentController.d.ts","sourceRoot":"","sources":["../../src/controllers/documentController.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,KAAK,CAAC;AAG9B,cAAM,kBAAkB;IAChB,MAAM,CAAC,GAAG,EAAE,OAAO;IAmDnB,IAAI,CAAC,GAAG,EAAE,OAAO;IAmBjB,MAAM,CAAC,GAAG,EAAE,OAAO;CAmB1B;AAED,eAAO,MAAM,kBAAkB,oBAA2B,CAAC"}
