@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import ChatView from './views/ChatView.vue'
 import DocumentManager from './components/DocumentManager.vue'
 import { Toaster } from './components/ui/sonner'
@@ -13,6 +13,11 @@ onMounted(() => {
   documentsStore.fetchDocuments()
   chatStore.fetchHistory()
 })
+
+onUnmounted(() => {
+  // Clean up all polling intervals when app is unmounted
+  documentsStore.stopAllPolling()
+})
 </script>
 
 <template>
@@ -21,7 +26,7 @@ onMounted(() => {
     <header class="border-b border-border bg-card">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <h1 class="text-2xl font-bold text-foreground">RAG 对话系统</h1>
+          <h1 class="text-2xl font-bold text-foreground">Cato</h1>
           <div class="text-sm text-muted-foreground">
             基于 TypeScript + Vue 3 + LlamaIndex
           </div>

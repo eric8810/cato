@@ -10,15 +10,27 @@ class DocumentService {
 
   async uploadDocument(file: any): Promise<Document> {
     const id = uuidv4();
+
+    // Get filename using the correct property
+    const fileName = file.originalFilename || file.originalname || file.name || 'unknown';
+
     const document: Document = {
       id,
-      name: file.originalname || file.name,
-      type: path.extname(file.originalname || file.name),
+      name: fileName,
+      type: path.extname(fileName),
       size: file.size,
       uploadTime: new Date(),
       status: 'processing',
       filePath: file.filepath || file.path
     };
+
+    console.log('Creating document:', {
+      id,
+      fileName,
+      type: document.type,
+      size: file.size,
+      filePath: document.filePath
+    });
 
     this.documents.set(id, document);
 

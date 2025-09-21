@@ -13,7 +13,7 @@ import type {
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'http://100.99.106.127:3000/api',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
@@ -62,6 +62,12 @@ export const documentApi = {
     return response.data;
   },
 
+  // Get document status
+  async getStatus(id: string): Promise<{ id: string; name: string; status: 'processing' | 'ready' | 'error' }> {
+    const response = await api.get<{ id: string; name: string; status: 'processing' | 'ready' | 'error' }>(`/documents/${id}/status`);
+    return response.data;
+  },
+
   // Delete document
   async delete(id: string): Promise<ApiResponse> {
     const response = await api.delete<ApiResponse>(`/documents/${id}`);
@@ -88,7 +94,7 @@ export const chatApi = {
     onError: (error: string) => void
   ): Promise<void> {
     try {
-      const response = await fetch('http://localhost:3000/api/chat/message', {
+      const response = await fetch('http://100.99.106.127:3000/api/chat/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

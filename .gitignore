@@ -35,3 +35,7 @@ build/
 .idea/
 *.swp
 *.swo
+
+# Upload directories - ignore contents but keep path
+server/uploads/*
+!server/uploads/.gitkeep

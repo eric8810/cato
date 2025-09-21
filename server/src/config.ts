@@ -8,8 +8,8 @@ export const config = {
     collectionName: 'documents'
   },
   models: {
-    embedding: 'http://localhost:8080',
-    generation: 'http://localhost:8081'
+    embedding: 'http://localhost:8080/v1',
+    generation: 'http://localhost:8081/v1'
   },
   rag: {
     chunkSize: 512,

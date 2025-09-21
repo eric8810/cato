@@ -1,6 +1,6 @@
-# RAG 对话系统 - 前端
+# Cato - 前端
 
-基于 Vue 3 + TypeScript + shadcn-vue 的现代化 RAG 对话系统前端应用。
+基于 Vue 3 + TypeScript + shadcn-vue 的现代化 Cato 前端应用。
 
 ## 技术栈
 
@@ -22,7 +22,7 @@
 - 文件大小和格式验证
 
 ### 💬 智能对话
-- 基于 RAG 的智能问答
+- 基于 Cato 的智能问答
 - 支持流式响应（SSE）
 - 消息历史记录
 - 引用来源显示

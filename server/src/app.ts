@@ -34,6 +34,7 @@ router.prefix('/api');
 // Document routes
 router.post('/documents/upload', documentController.upload);
 router.get('/documents', documentController.list);
+router.get('/documents/:id/status', documentController.getStatus);
 router.delete('/documents/:id', documentController.delete);
 
 // Chat routes
